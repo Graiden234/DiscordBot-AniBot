@@ -1,0 +1,36 @@
+import discord
+from discord.ext import commands
+
+intents = discord.Intents(messages=True, guilds=True,
+                          reactions=True, members=True, presences=True)
+bot = commands.Bot(command_prefix="!mm ", intents=intents)
+
+
+@bot.event
+async def on_ready():
+    print("Ben hazırım")
+
+
+@bot.command()
+async def animot(msg):
+    await msg.send("Ben sayın Animot, daha yeni yazılmaya başlanmış bir botum pek özelliğim yok.")
+
+
+@bot.event
+async def on_member_join(member):
+    channel = discord.utils.get(member.guild.text_channels, name="hoşgeldiniz")
+    await channel.send((f"{member.mention} aramıza katıldı, kurallara uy lütfen!!"))
+    print(f"{member} aramıza katıldı, kurallara uy lütfen!!")
+
+
+@bot.command()
+async def bö(msa):
+    await msa.send("https://i.pinimg.com/736x/1e/3e/62/1e3e62961cde08c1ee439ea017715583.jpg%22")
+
+
+
+@bot.event
+async def on_member_remove(member):
+    channel = discord.utils.get(member.guild.text_channels, name="civcivin-karizmasına-dayanamayıp-gidenler")
+    await channel.send(f"{member.mention} aramızdan ayrıldı, civcivin karizmasına dayanamadı!!")
+    print(f"{member} aramızdan ayrıldı, civcivin karizmasına dayanamadı!!")
