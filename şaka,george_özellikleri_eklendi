@@ -1,0 +1,50 @@
+import discord
+from discord.ext import commands
+
+intents = discord.Intents(messages=True, guilds=True,
+                          reactions=True, members=True, presences=True)
+bot = commands.Bot(command_prefix="!mm ", intents=intents)
+
+
+@bot.event
+async def on_ready():
+    print("Ben hazırım")
+
+
+@bot.command()
+async def animot(msg):
+    await msg.send("Ben sayın Animot, daha yeni yazılmaya başlanmış bir botum pek özelliğim yok.")
+
+
+@bot.event
+async def on_member_join(member):
+    channel = discord.utils.get(member.guild.text_channels, name="gelenler")
+    await channel.send((f"{member.mention} aramıza katıldı, kurallara uy lütfen!!"))
+    print(f"{member} aramıza katıldı, hoşgeldiniz.")
+
+
+@bot.command()
+async def bö(msa):
+    await msa.send("https://i.pinimg.com/736x/1e/3e/62/1e3e62961cde08c1ee439ea017715583.jpg%22")
+
+
+@bot.event
+async def on_member_remove(member):
+    channel = discord.utils.get(member.guild.text_channels, name="gidenler")
+    await channel.send(f"{member.mention} aramızdan ayrıldı, defolup gitsin.")
+    print(f"{member} aramızdan ayrıldı, civcivin karizmasına dayanamadı!!")
+
+
+@bot.command()
+async def şaka(msn):
+    await msn.send("https://cdn.discordapp.com/attachments/856249906562072577/888831874863087646/PicsArt_09-18-09.52.30.jpg")
+
+@bot.command()
+async def george(msab):
+    await msab.send(("Savaş barıştır \nÖzgürlük köleliktir \nCahillik güçtür"))
+
+
+
+
+
+bot.run("ODg3NzQ0NTIyNTkzOTE4OTc4.YUImgw.vYcMrWfQRKN4rjIvaC9oHOtNBhw")
